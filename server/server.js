@@ -18,8 +18,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //Swagger 
-import swaggerUI from "swagger-ui-express"
-import swaggerDoc from "swagger-jsdoc"
+import swaggerUI from "swagger-ui-express";
+import swaggerDoc from "swagger-jsdoc";
+
 //Swagger option
 const swaggerOption = {
     definition:{
