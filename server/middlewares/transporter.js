@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export default function (newUser,verifiedCode) {
+export default function(newUser,verifiedCode) {
     const transporter = nodemailer.createTransport({
         service:'Gmail',
         auth: {
@@ -13,7 +13,7 @@ export default function (newUser,verifiedCode) {
         from: 'Wibu Lord',
         to: newUser,
         subject: 'Verified email',
-        text: 'This is your verified code: '+ verifiedCode +' .Enjoy your time in the WibuWorld'
+        text: 'This is your verified code: '+ verifiedCode +' .Enjoy your time in the It Blogger'
     }
 
     transporter.sendMail(mailOption,function(err,info){
