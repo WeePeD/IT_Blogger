@@ -206,7 +206,7 @@ export default class userController {
     */
     async deleteUser(req,res) {
         await userModel.findByIdAndDelete(req.params.id)
-        res.status(200)
+        res.status(204)
            .json({message: 'Delete user !'})
     }
 }
