@@ -127,7 +127,7 @@ export default class authController {
            .json({message:'You have login',token: token})
     }
 
-
+    
     async verifiedMail(req,res) {
         const checkCode = await userModel.findOneAndUpdate({_id:req.params.id,confirmationCode:req.body.confirmationCode},{status:'Active'})
         if (!checkCode) res.status(404)
