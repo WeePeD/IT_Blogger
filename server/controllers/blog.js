@@ -1,4 +1,4 @@
-import { blogModel } from "../models/blog.js";
+import { blogModel } from '../models/blog.js';
 
 export default class blogController {
     
