@@ -1,4 +1,6 @@
-import {commentModel} from '../models/comment.js';
+import { commentModel } from '../models/comment.js';
+import { userModel } from '../models/user.js';
+import { blogModel } from '../models/blog.js';
 
 export default class commentController {
     
@@ -51,6 +53,8 @@ export default class commentController {
             blog: req.body.blog,
             content: req.body.content
         })
+        await userModel.findByIdAndUpdate(req.body.userId,{$push: {comments:newComment._id}})
+        await blogModel.findByIdAndUpdate(req.body.blog,{$push: {comments:newComment._id}})
         const saveComment = await newComment.save()
         if (!saveComment) res.status(500)
                           .json({message: 'Internal error !'})
@@ -177,7 +181,9 @@ export default class commentController {
     *               description: Internal error !
     */
     async deleteComment(req,res) {
-        await commentModel.findByIdAndDelete(req.params.id)
+        const deleteComment = await commentModel.findByIdAndDelete(req.params.id)
+        await userModel.findOneAndUpdate({comments:deleteComment._id},{$pull:{comments:deleteComment._id}})
+        await blogModel.findOneAndUpdate({comments:deleteComment._id},{$pull:{comments:deleteComment._id}})
         res.status(204)
            .json({message: 'Delete comment !'})
     }

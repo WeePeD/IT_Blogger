@@ -127,7 +127,37 @@ export default class authController {
            .json({message:'You have login',token: token})
     }
 
-    
+    /**
+     * @swagger
+     * /auth/verified/{id}:
+     *  post:
+     *      summary: Active the account
+     *      tags: [Authentication]
+     *      parameters:
+     *        - in: path    
+     *          name: id
+     *          schema:
+     *              type: string
+     *          required: true
+     *          description: User id
+     *      requestBody:
+     *          required: true
+     *          content:
+     *              application/json:
+     *                  schema:
+     *                      properties:
+     *                          confirmationCode:
+     *                              type: string
+     *                      required:
+     *                          - confirmationCode
+     *      responses:
+     *          201:
+     *              description: Account activate !
+     *          404:
+     *              description: Confirm code is not correct, please try again.
+     *          500:
+     *              description: Internal error !
+     */
     async verifiedMail(req,res) {
         const checkCode = await userModel.findOneAndUpdate({_id:req.params.id,confirmationCode:req.body.confirmationCode},{status:'Active'})
         if (!checkCode) res.status(404)

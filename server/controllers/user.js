@@ -209,6 +209,39 @@ export default class userController {
         res.status(204)
            .json({message: 'Delete user !'})
     }
+
+    /**
+     * @swagger
+     * /user/getblogs/{id}:
+     *  get:
+     *      summary: Get user's blogs by their id
+     *      tags: [Users]
+     *      parameters:
+     *        - in: path
+     *          name: id
+     *          schema:
+     *              type: string
+     *          required: true
+     *          description: User id
+     *      responses:
+     *          200:
+     *              description: User blogs found by id
+     *          404: 
+     *              description: Cannot find user.
+     *                          
+     */
+    async getUserBlog(req,res) {
+        const findUser = await userModel.findById(req.params.id)
+                                        .populate('blogs')
+        res.status(200)
+           .json({message:findUser.blogs})
+    }
+
+    async deleteAllBlogComment(req,res) {
+        await userModel.findByIdAndUpdate(req.params.id,{$set:{blogs:[],comments:[]}})
+        res.status(200)
+           .json({message:"Delete done !"})
+    }
 }
 
 

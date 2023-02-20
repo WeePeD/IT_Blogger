@@ -1,4 +1,5 @@
 import { blogModel } from '../models/blog.js';
+import { userModel } from '../models/user.js';
 
 export default class blogController {
     
@@ -51,6 +52,7 @@ export default class blogController {
             comments: req.body.comments,
             content: req.body.content
         })
+        await userModel.findByIdAndUpdate(req.body.userId,{$push: {blogs:newBlog._id}})
         const saveBlog = await newBlog.save()
         if (!saveBlog) res.status(500)
                           .json({message: 'Internal error !'})
@@ -178,6 +180,7 @@ export default class blogController {
     */
     async deleteBlog(req,res) {
         await blogModel.findByIdAndDelete(req.params.id)
+        await userModel.findOneAndUpdate({blogs:req.params.id},{$pull: {blogs: req.params.id}})
         res.status(204)
            .json({message: 'Delete blog !'})
     }
