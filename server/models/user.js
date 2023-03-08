@@ -12,7 +12,9 @@ const userSchema = new mongoose.Schema({
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
     skills: [{ type: String}],
     job: { type: String},
-    role: { type: String}
+    role: { type: String},
+    friends: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    stars: { type: Number}
 },
 {
     timestamps: true

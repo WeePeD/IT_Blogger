@@ -56,7 +56,6 @@ mongoose.connect(process.env.DB_URL,{
 router(app)
 
 
-
 const listener = app.listen(process.env.PORT,()=>{
     console.log('The backend server is running !')
 })

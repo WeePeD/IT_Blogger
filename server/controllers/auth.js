@@ -78,7 +78,7 @@ export default class authController {
             gender: req.body.gender,
             confirmationCode: verifiedCode
         })
-        transporter(req.body.email, verifiedCode)
+        transporter(req.body.email, verifiedCode,'register')
         const saveUser = await newUser.save()
         if (!saveUser) res.status(500)
         res.status(201)
@@ -122,7 +122,12 @@ export default class authController {
                                .send('Your password is not correct !')
         if (checkEmail.status == 'Pending') res.status(422) 
                                                .send('Please active your account first !')
-        const token = jwt.sign({_id: checkEmail._id},process.env.TOKEN_SECRET, {expiresIn: 60*60*24})
+        if (checkEmail.isAdmin === true) {
+                const admin_token = jwt.sign({_id:checkEmail._id},process.env.TOKEN_SECRET_ADMIN, {expiresIn: 20}) 
+                res.header('admin-token',admin_token)
+                   .json({message:'Wellcome Wibulord',token})
+        } 
+        const token = jwt.sign({_id: checkEmail._id},process.env.TOKEN_SECRET, {expiresIn: 20})
         res.header('auth-token', token)
            .json({message:'You have login',token: token})
     }
@@ -166,5 +171,37 @@ export default class authController {
            .json(checkCode)
     }
 
+    resetPassword(req,res){
+        const {id} = req.params
+        const {newPassword, confirmPassword} = req.body
+        if (confirmPassword != newPassword){
+            res.send('Password does not match')
+        }
+        const user = userModel.findByIdAndUpdate(id,{$set : {password: newPassword}})
+        res.send(`User ${user.userName} password has been updated.`)
+    }
+ 
+    confirmCode(req,res) {
+        const {id} = req.params
+        const {code} = req.body
+        const checkCode = userModel.findOne({confirmationCode:code, _id: id})
+        if (!checkCode){
+            res.send('Wrong code')
+        }
+        else{
+            res.send('correct')
+                .redirect(`resetpass/${id}`)
+        }
+    }
 
+    async resetCode(req,res) {
+        const findUser = await userModel.findOne({email: req.body.email})
+        if (!findUser) res.status(404)
+                          .send('Your email is not correct!')
+        const verifiedCode = crypto.randomInt(100000,999999)
+        await findUser.updateOne({$set : {confirmationCode: verifiedCode}})
+        transporter(req.body.email, verifiedCode,'forgetPass')
+
+        res.redirect(`confirmcode/${findUser._id}`)
+    }
 }
