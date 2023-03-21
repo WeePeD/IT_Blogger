@@ -7,6 +7,9 @@ const commentSchema = new mongoose.Schema({
     codes: [{ type: String}],    
     star: { type: Boolean, default: false},
     rating: [{ type: Schema.Types.ObjectId}]
+},
+{
+    timestamps:true
 })
 
 export const commentModel = mongoose.model('Comment', commentSchema)

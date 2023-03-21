@@ -13,11 +13,8 @@ const userSchema = new mongoose.Schema({
     skills: [{ type: String}],
     job: { type: String},
     role: { type: String},
-    friends: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    followers: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     stars: { type: Number}
-},
-{
-    timestamps: true
 })
 
 export const userModel = mongoose.model('User', userSchema)

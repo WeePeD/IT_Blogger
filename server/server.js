@@ -1,6 +1,7 @@
 //Express
 import express from 'express';
 const app = express();
+app.set('view engine','ejs')
 
 //Dotenv
 import dotenv from 'dotenv';
@@ -53,6 +54,9 @@ mongoose.connect(process.env.DB_URL,{
     console.log('False to connect'+err)
 })
 
+app.get('/',(req,res) => {
+    res.redirect('/blog/getall')
+})
 router(app)
 
 

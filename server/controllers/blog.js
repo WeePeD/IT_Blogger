@@ -49,6 +49,7 @@ export default class blogController {
     async createBlog(req,res) {
         const newBlog = blogModel({
             userId: req.body.userId,
+            blogName: req.body.blogName,
             comments: req.body.comments,
             content: req.body.content
         })
@@ -82,8 +83,9 @@ export default class blogController {
         const blogs = await blogModel.find({})
         if (!blogs) res.status(404)
                        .json({message: 'Cannot find blog !'})
+
         res.status(200)
-           .json({blogList: blogs})
+           .render('index', {blogs: blogs})
     }
 
     /**

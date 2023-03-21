@@ -171,7 +171,7 @@ export default class authController {
            .json(checkCode)
     }
 
-    resetPassword(req,res){
+    resetPassword(req,res) {
         const {id} = req.params
         const {newPassword, confirmPassword} = req.body
         if (confirmPassword != newPassword){
@@ -189,8 +189,7 @@ export default class authController {
             res.send('Wrong code')
         }
         else{
-            res.send('correct')
-                .redirect(`resetpass/${id}`)
+            res.redirect(`resetpass/${id}`)
         }
     }
 
