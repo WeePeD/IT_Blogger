@@ -51,7 +51,8 @@ export default class blogController {
             userId: req.body.userId,
             blogName: req.body.blogName,
             comments: req.body.comments,
-            content: req.body.content
+            content: req.body.content,
+            createAt: Date.now()
         })
         await userModel.findByIdAndUpdate(req.body.userId,{$push: {blogs:newBlog._id}})
         const saveBlog = await newBlog.save()

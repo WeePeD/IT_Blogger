@@ -8,7 +8,9 @@ const blogSchema = new mongoose.Schema({
     codes: [{ type: String }],
     tags: [{ type: String, lowercase: true}],
     star: { type: Boolean, default: false},
-    rating: [{ type: Schema.Types.ObjectId}]
+    rating: [{ type: Schema.Types.ObjectId}],
+    createAt: { type: Date},
+    updateAt: [{type: Date}]
 })
 
 export const blogModel = mongoose.model('Blog', blogSchema)

@@ -9,7 +9,9 @@
 <body>
     <div class="container">
         <% blogs.forEach(blog =>{ %>
-           <h1> <%= blog.blogName %> </h1> 
+           <div>
+               <a href="/blog/getblog/<%= blog._id%>"><%= blog.blogName %>  </a> 
+           </div>
         <% }) %>
     </div>
 </body>

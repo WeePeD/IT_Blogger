@@ -76,7 +76,8 @@ export default class authController {
             job: req.body.job,
             role: req.body.role,
             gender: req.body.gender,
-            confirmationCode: verifiedCode
+            confirmationCode: verifiedCode,
+            createAt: Date.now()
         })
         transporter(req.body.email, verifiedCode,'register')
         const saveUser = await newUser.save()

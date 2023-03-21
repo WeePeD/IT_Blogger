@@ -14,7 +14,9 @@ const userSchema = new mongoose.Schema({
     job: { type: String},
     role: { type: String},
     followers: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-    stars: { type: Number}
+    stars: { type: Number},
+    createAt: { type: Date},
+    updateAt: [{type: Date}]
 })
 
 export const userModel = mongoose.model('User', userSchema)

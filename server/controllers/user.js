@@ -77,7 +77,8 @@ export default class userController {
     async createUser(req,res) {
         const newUser = userModel({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            createAt: Date.now()
         })
         const saveUser = await newUser.save()
         if (!saveUser) res.status(500)

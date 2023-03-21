@@ -51,7 +51,8 @@ export default class commentController {
         const newComment = commentModel({
             userId: req.body.userId,
             blog: req.body.blog,
-            content: req.body.content
+            content: req.body.content,
+            createAt: Date.now()
         })
         await userModel.findByIdAndUpdate(req.body.userId,{$push: {comments:newComment._id}})
         await blogModel.findByIdAndUpdate(req.body.blog,{$push: {comments:newComment._id}})
