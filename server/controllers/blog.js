@@ -52,16 +52,19 @@ export default class blogController {
             blogName: req.body.blogName,
             comments: req.body.comments,
             content: req.body.content,
-            createAt: Date.now()
+            createAt: new Date()
         })
         await userModel.findByIdAndUpdate(req.body.userId,{$push: {blogs:newBlog._id}})
         const saveBlog = await newBlog.save()
         if (!saveBlog) res.status(500)
                           .json({message: 'Internal error !'})
         res.status(201)
-           .json({message: saveBlog})
+           .redirect('/blog/getall')
     }
 
+    newBlog(req,res) {
+        res.render('newBlog')
+    }
     /**
     * @swagger
     * /blog/getall:

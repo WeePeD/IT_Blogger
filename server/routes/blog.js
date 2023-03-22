@@ -4,6 +4,7 @@ import express from 'express';
 const router = express.Router()
 
 const blogcontroller = new blogController
+    router.get('/createblog',blogcontroller.newBlog)
     router.post('/createblog', blogcontroller.createBlog)
     router.get('/getall', blogcontroller.getAllBlog)
     router.get('/getblog/:id', blogcontroller.getBlog)
