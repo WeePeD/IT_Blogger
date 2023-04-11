@@ -15,8 +15,14 @@ const userSchema = new mongoose.Schema({
     role: { type: String},
     followers: [{ type: Schema.Types.ObjectId, ref: 'User'}],
     stars: { type: Number},
+    slug: { type: String, require: true, unique: true},
     createAt: { type: Date},
     updateAt: [{type: Date}]
+})
+
+userSchema.pre("validate", function(){
+    if (this.userName) this.slug = slugify(this.userName, {lowercase: true, strict:true})
+    next()
 })
 
 export const userModel = mongoose.model('User', userSchema)

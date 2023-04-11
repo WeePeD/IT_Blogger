@@ -172,6 +172,7 @@ export default class authController {
            .json(checkCode)
     }
 
+
     resetPassword(req,res) {
         const {id} = req.params
         const {newPassword, confirmPassword} = req.body
