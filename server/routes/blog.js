@@ -1,13 +1,17 @@
 import blogController from '../controllers/blog.js';
 import express from 'express';
 
-const router = express.Router()
-
 const blogcontroller = new blogController
-    router.get('/createblog',blogcontroller.newBlog)
+
+const router = express.Router()
+    //Actual route
+    router.get('/home',blogcontroller.getAllBlog)
+    router.get('/new',blogcontroller.newBlog)
+
+    //Test route
     router.post('/createblog', blogcontroller.createBlog)
     router.get('/getall', blogcontroller.getAllBlog)
-    router.get('/getblog/:id', blogcontroller.getBlog)
+    router.get('/:slug', blogcontroller.getBlog)
     router.put('/updateblog/:id', blogcontroller.updateBlog)
     router.delete('/deleteblog/:id', blogcontroller.deleteBlog)
     

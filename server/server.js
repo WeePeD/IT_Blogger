@@ -42,6 +42,7 @@ const swaggerOption = {
 const specs = swaggerDoc(swaggerOption)
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(specs))
 
+mongoose.set('strictQuery',true)
 //Connect to database
 mongoose.connect(process.env.DB_URL,{
     useNewUrlParser: true, 
@@ -55,7 +56,7 @@ mongoose.connect(process.env.DB_URL,{
 })
 
 app.get('/',(req,res) => {
-    res.redirect('/blog/getall')
+    res.redirect('/blog/home')
 })
 router(app)
 

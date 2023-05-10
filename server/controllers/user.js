@@ -34,12 +34,18 @@ export default class userController {
     *                  description: User code to active their account
     *              blogs:
     *                  type: array
+    *                  items: 
+    *                       type: object
     *                  description: User's blogs
     *              comments:
     *                  type: array
+    *                  items: 
+    *                       type: object
     *                  description: User's comment in blogs
     *              skill:
     *                  type: array
+    *                  items: 
+    *                       type: string
     *                  description: User's skills
     *              job:
     *                  type: string
@@ -238,6 +244,7 @@ export default class userController {
            .json({message:findUser.blogs})
     }
 
+    
     async deleteAllBlogComment(req,res) {
         await userModel.findByIdAndUpdate(req.params.id,{$set:{blogs:[],comments:[]}})
         res.status(200)

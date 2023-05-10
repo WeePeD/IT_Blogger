@@ -1,7 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
+import slugify from "slugify";
 
 const userSchema = new mongoose.Schema({
-    userName : { type: String, min: 6, max: 8},
+    userName : { type: String, min: 6, max: 8, unique:true},
     email: { type: String, require: true},
     password: { type: String, require: true, min: 10, max: 255},
     isAdmin: { type: Boolean, default: false},
@@ -21,8 +22,7 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.pre("validate", function(){
-    if (this.userName) this.slug = slugify(this.userName, {lowercase: true, strict:true})
-    next()
+    if (this.userName) {this.slug = slugify(this.userName, {lowercase: true, strict:true})}
 })
 
 export const userModel = mongoose.model('User', userSchema)

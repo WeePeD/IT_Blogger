@@ -10,13 +10,17 @@
     <div class="container">
         <form action="/blog/createblog" method="post">
             <div>
+                <label>User ID</label>
+                <input type="text" name="userId" placeholder="User Id">
+            </div>
+            <div>
                 <label>Title</label>
-                <input name="blogName" placeholder="Title">
+                <input type="text" name="blogName" placeholder="Title">
             </div>
 
             <div>
                 <label>Blog's content</label>
-                <input name="content" placeholder="Content">
+                <input type="text" name="content" placeholder="Content">
             </div>
 
             <button type="submit">Save</button>

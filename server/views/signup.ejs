@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/auth/register" method="post">
+            <div>
+                <label>User Name</label>
+                <input type="text" name="userName" placeholder="User Name">
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email">
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+
+            <div>
+                <label>Job</label>
+                <input type="text" name="job" placeholder="Your job">
+            </div>
+
+            <div>
+                <label>Role</label>
+                <input type="text" name="role" placeholder="Your current role">
+            </div>
+
+            <div>
+                <label>Gender</label>
+                <input type="text" name="gender" placeholder="Gender">
+            </div>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

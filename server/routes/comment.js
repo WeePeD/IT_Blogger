@@ -1,9 +1,9 @@
 import commentController from '../controllers/comment.js';
 import express from 'express';
 
-const router = express.Router()
-
 const commentcontroller = new commentController
+
+const router = express.Router()
     router.post('/createcomment', commentcontroller.createComment)
     router.get('/getall', commentcontroller.getAllComment)
     router.get('/getcomment/:id', commentcontroller.getComment)

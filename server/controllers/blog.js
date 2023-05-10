@@ -9,16 +9,26 @@ export default class blogController {
     *  schemas:
     *      Blog:
     *          type: object
+    *          require: 
+    *               - userId
+    *               - blogName
+    *               - content
+    *               - tags
     *          properties:
     *              userId:
     *                  type: string
     *                  description: User id of the blog 
-    *              comments:
-    *                  type: array
-    *                  description: The blog comments
+    *              blogName:
+    *                  type: string
+    *                  description: The blog name
     *              content:
     *                  type: string
     *                  description: Blog content
+    *              tags:
+    *                  type: array
+    *                  items: 
+    *                       type: string
+    *                  description: Tag for the blog
     */    
 
 
@@ -59,12 +69,13 @@ export default class blogController {
         if (!saveBlog) res.status(500)
                           .json({message: 'Internal error !'})
         res.status(201)
-           .redirect('/blog/getall')
+           .json(saveBlog)
     }
 
     newBlog(req,res) {
-        res.render('newBlog')
+        res.render("newBlog")
     }
+
     /**
     * @swagger
     * /blog/getall:
@@ -85,29 +96,30 @@ export default class blogController {
     */     
     async getAllBlog(req,res) {
         const blogs = await blogModel.find({})
+                                     .populate('userId')
         if (!blogs) res.status(404)
                        .json({message: 'Cannot find blog !'})
-
+        
         res.status(200)
-           .render('index', {blogs: blogs})
+           .render("home",{blogs:blogs})
     }
 
     /**
     * @swagger
-    * /blog/getblog/{id}:
+    * /blog/getblog/{slug}:
     *  get:
-    *   summary: Get blog by their id
+    *   summary: Get blog by their slug
     *   tags: [Blogs]
     *   parameters:
     *      - in: path
-    *        name: id
+    *        name: slug
     *        schema: 
     *           type: string
     *        required: true
-    *        description: Blog id
+    *        description: Blog slug
     *   responses:
     *       200:
-    *           description: Blog found by id
+    *           description: Blog found by slug
     *           content: 
     *               application/json:
     *                   schema:
@@ -117,11 +129,11 @@ export default class blogController {
     * 
     */   
     async getBlog(req,res) {
-        const blog = await blogModel.findById(req.params.id)
+        const blog = await blogModel.findOne({slug: req.params.slug})
         if (!blog) res.status(404)
                       .json({message: 'Cannot find blog !'})
         res.status(200)
-           .json({blog: blog})
+           .render("blog",{blog:blog})
     }
 
     /** 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <!-- Nav Bar-->
+    <div class="nav-bar">
+        <a>Hinh </a>
+        <ul>
+            <li>Bai viet</li>
+        </ul>
+        <form>
+            <input type="text" placeholder="Tim kiem">
+        </form>
+        <a>Dang ky</a>
+        <a>Dang nhap</a>
+    </div>
+    <!-- End Nav Bar-->
+    
+    <!-- Body-->
+    <div class="container">
+
+        <% blogs.forEach(blog =>{ %>
+           <div>
+               <a href="/blog/<%= blog.slug %>"><%= blog.blogName %>  </a> 
+               <a><%= blog.userId.userName %></a>
+               <a><%= blog.userId.role %></a>
+           </div>
+        <% }) %>
+    </div>
+    <!-- End Body-->
+</body>
+</html>

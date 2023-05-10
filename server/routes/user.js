@@ -2,9 +2,13 @@ import userController from '../controllers/user.js';
 import express from 'express';
 import verifiedToken from '../middlewares/verifiedToken.js';
 
-const router = express.Router()
-
 const usercontroller = new userController
+
+const router = express.Router()
+    //Actual route
+    router.get('/:slug',)
+
+    //Test route
     router.post('/createuser', usercontroller.createUser)
     router.get('/getall', usercontroller.getAllUser)
     router.get('/getuser/:id', usercontroller.getUser)
