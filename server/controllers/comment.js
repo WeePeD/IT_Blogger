@@ -182,9 +182,9 @@ export default class commentController {
     *               description: Internal error !
     */
     async deleteComment(req,res) {
+        await userModel.findOneAndUpdate({comments:req.params.id},{$pull:{comments:deleteComment._id}})
+        await blogModel.findOneAndUpdate({comments:req.params.id},{$pull:{comments:deleteComment._id}})
         const deleteComment = await commentModel.findByIdAndDelete(req.params.id)
-        await userModel.findOneAndUpdate({comments:deleteComment._id},{$pull:{comments:deleteComment._id}})
-        await blogModel.findOneAndUpdate({comments:deleteComment._id},{$pull:{comments:deleteComment._id}})
         res.status(204)
            .json({message: 'Delete comment !'})
     }

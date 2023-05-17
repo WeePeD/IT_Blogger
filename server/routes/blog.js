@@ -10,7 +10,7 @@ const router = express.Router()
 
     //Test route
     router.post('/createblog', blogcontroller.createBlog)
-    router.get('/getall', blogcontroller.getAllBlog)
+    router.get('/test/getall', blogcontroller.testGetAll)
     router.get('/:slug', blogcontroller.getBlog)
     router.put('/updateblog/:id', blogcontroller.updateBlog)
     router.delete('/deleteblog/:id', blogcontroller.deleteBlog)

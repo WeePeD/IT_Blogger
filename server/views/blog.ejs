@@ -12,6 +12,11 @@
         <div>   
             <%- blog.sanitizedHtml %>
         </div>
+        <div class="comments">
+            <% blog.comments.forEach(comment =>{ %> 
+                <p><%= comment.content %></p>
+            <% }) %>
+        </div>
     </div>
 </body>
 </html>
