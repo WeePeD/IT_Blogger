@@ -27,23 +27,11 @@
             </div>
         </div>
         <!-- End Nav Bar-->
-        <div class="area" >
-            <ul class="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
+
     <div class="container">
         <form action="/blog/createblog" method="post">
-            
-             <input name="name" type="text" class="b" placeholder="Blog's title" />  
+            <input name="userId" type="hidden" value="634b7558d6a95f9a218da91b">
+             <input name="name" type="text" class="blog" placeholder="Blog's title" />  
                 <textarea name="content" class="blog" placeholder="Make your thought timeless here..."></textarea>
                 <input type="submit" value="Publish"/> 
               </form> 
@@ -78,6 +66,7 @@
         justify-content: space-evenly;
         align-items: stretch;
         padding:20px;
+        background-color: #4e54c8;
     width: 100%;}
         .blog-input{display: flex;
         flex-direction: column;}
@@ -108,7 +97,7 @@ form { max-width:420px; margin:50px auto; }
   border-radius: 5px;
   line-height: 22px;
   background-color: transparent;
-  border:2px solid #CC6666;
+  
   transition: all 0.3s;
   padding: 13px;
   margin-bottom: 15px;
@@ -116,7 +105,7 @@ form { max-width:420px; margin:50px auto; }
   box-sizing: border-box;
   outline:0;
 }
-
+::placeholder{color: #fff;}
 .blog:focus { border:2px solid #CC4949; }
 
 textarea {
