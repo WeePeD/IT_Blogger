@@ -6,6 +6,7 @@ const authcontroller = new authController
 const router = express.Router()
     router.post('/register', authcontroller.register)
     router.post('/login', authcontroller.login)
+    router.get('/login',authcontroller.loginPage)
     router.post('/verified/:id', authcontroller.verifiedMail)
     router.post('/resetcode', authcontroller.resetCode)
     router.get('/confirmcode/:id', authcontroller.confirmCode)

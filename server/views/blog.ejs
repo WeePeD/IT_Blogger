@@ -7,11 +7,59 @@
     <title><%= blog.blogName %></title>
 </head>
 <body>
+        <!-- Nav Bar-->
+        <div class="nav-bar">
+            <div class="web-logo">
+            <!--<a>Hinh </a>-->
+            <img class="web-logo" src="https://static.vecteezy.com/system/resources/previews/017/178/344/original/hour-glass-icon-on-transparent-background-free-png.png" width="20" height="20">
+    <h1 class="web-name">Memento</h1>
+    
+            <ul>
+                <li>Bai viet</li>
+            </ul>
+          </div>
+            <div class="nav-components">
+            <form>
+                <input type="text" placeholder="Tim kiem">
+            </form>
+            <a>Dang ky</a>
+            <a>Dang nhap</a>
+            </div>
+        </div>
+        <!-- End Nav Bar-->
     <div class="container">
         <h1><%= blog.blogName %></h1>
         <div>   
             <%- blog.sanitizedHtml %>
         </div>
+        <div class="comments">
+            <% blog.comments.forEach(comment =>{ %> 
+                <p><%= comment.content %></p>
+            <% }) %>
+        </div>
     </div>
+    <style>
+        .nav-bar {
+            display: flex; /* 1 */
+            justify-content: space-between; /* 2 */
+            
+            background:#74ABAE; /* 4 */
+       
+          }
+          .nav-components{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+          }
+        
+    
+    .web-logo{
+      display: flex;
+      flex-direction: row;
+    justify-content: space-between;
+    align-items: center;}
+    </style>
 </body>
 </html>

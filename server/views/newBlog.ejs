@@ -7,24 +7,144 @@
     <title>This is the first page</title>
 </head>
 <body>
+        <!-- Nav Bar-->
+        <div class="nav-bar">
+            <div class="web-logo">
+            <!--<a>Hinh </a>-->
+            <img class="web-logo" src="https://static.vecteezy.com/system/resources/previews/017/178/344/original/hour-glass-icon-on-transparent-background-free-png.png" width="20" height="20">
+    <h1 class="web-name">Memento</h1>
+    
+            <ul>
+                <li>Bai viet</li>
+            </ul>
+          </div>
+            <div class="nav-components">
+            <form>
+                <input type="text" placeholder="Tim kiem">
+            </form>
+            <a>Dang ky</a>
+            <a>Dang nhap</a>
+            </div>
+        </div>
+        <!-- End Nav Bar-->
+        <div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
     <div class="container">
         <form action="/blog/createblog" method="post">
-            <div>
-                <label>User ID</label>
-                <input type="text" name="userId" placeholder="User Id">
-            </div>
-            <div>
-                <label>Title</label>
-                <input type="text" name="blogName" placeholder="Title">
-            </div>
+            
+             <input name="name" type="text" class="b" placeholder="Blog's title" />  
+                <textarea name="content" class="blog" placeholder="Make your thought timeless here..."></textarea>
+                <input type="submit" value="Publish"/> 
+              </form> 
+              <form>     
 
-            <div>
-                <label>Blog's content</label>
-                <input type="text" name="content" placeholder="Content">
-            </div>
-
-            <button type="submit">Save</button>
-        </form>
     </div>
+    </div>
+    <style>
+        .nav-bar {
+            display: flex; /* 1 */
+            justify-content: space-between; /* 2 */
+            
+            background:#74ABAE; /* 4 */
+       
+          }
+          .nav-components{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+          }
+        
+    
+    .web-logo{
+      display: flex;
+      flex-direction: row;
+    justify-content: space-between;
+    align-items: center;}
+    .container{display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: stretch;
+        padding:20px;
+    width: 100%;}
+        .blog-input{display: flex;
+        flex-direction: column;}
+
+        input[type=text], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+form { max-width:420px; margin:50px auto; }
+
+.blog {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #CC6666;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.blog:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#CC6666;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:#fff;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#CC4949; }
+
+
+
+
+    </style>
 </body>
 </html>

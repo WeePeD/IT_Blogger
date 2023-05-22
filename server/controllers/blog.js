@@ -130,6 +130,8 @@ export default class blogController {
     */   
     async getBlog(req,res) {
         const blog = await blogModel.findOne({slug: req.params.slug})
+                                    .populate('userId')
+                                    .populate('comments')
         if (!blog) res.status(404)
                       .json({message: 'Cannot find blog !'})
         res.status(200)

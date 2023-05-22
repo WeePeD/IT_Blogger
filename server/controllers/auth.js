@@ -130,7 +130,12 @@ export default class authController {
         } 
         const token = jwt.sign({_id: checkEmail._id},process.env.TOKEN_SECRET, {expiresIn: 20})
         res.header('auth-token', token)
-           .json({message:'You have login',token: token})
+           .redirect('/blog/home')   
+        //.json({message:'You have login',token: token})
+    }
+
+    loginPage(req,res) {
+        res.render('signin')
     }
 
     /**
@@ -205,4 +210,6 @@ export default class authController {
 
         res.redirect(`confirmcode/${findUser._id}`)
     }
+
+
 }
