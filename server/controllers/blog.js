@@ -204,4 +204,31 @@ export default class blogController {
         res.status(204)
            .json({message: 'Delete blog !'})
     }
+
+    /**
+    * @swagger
+    * /blog/test/getall:
+    *  get:
+    *   summary: Returns the list of all blog
+    *   tags: [Blogs]
+    *   responses:
+    *       200:
+    *           description: The list of blog
+    *           content:
+    *               application/json:
+    *                   schema:
+    *                   type: array
+    *                   items:
+    *                       $ref: '#/components/schemas/Blog'
+    *       404:
+    *           description: Cannot find blog !
+    */     
+    async testGetAll (req,res){
+        const blogs = await blogModel.find({})
+        if (!blogs) res.status(404)
+                       .json({message: 'Cannot find blog !'})
+        
+        res.status(200)
+           .json(blogs) 
+    }
 }
