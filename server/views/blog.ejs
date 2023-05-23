@@ -35,7 +35,7 @@
         <section>
             <div class="comment-container">
                 <div class="row">
-                    <div class="col-sm-5 col-md-6 col-12 pb-4">
+                    <div class="comment-wrapper col-sm-5 col-md-6 col-12 pb-4">
                         <h1>Comments</h1>
         
             <% blog.comments.forEach(comment =>{ %> 
@@ -47,10 +47,6 @@
                     <br>
                     <p><%= comment.content %></p>
                 </div>
-
-
-
-            
             <% }) %>
         </div>
         
@@ -168,16 +164,6 @@ body{
     
 }
 
-.darker{
-    border: 1px solid #ecb21f;
-    background-color: #4e54c8;
-    float: right;
-    border-radius: 5px;
-    padding-left: 40px;
-    padding-right: 30px;
-    padding-top: 10px;
-}
-
 .comment{
     border: 1px solid rgba(16, 46, 46, 1);
     
@@ -191,7 +177,8 @@ body{
 .comment h4,.comment span,.darker h4,.darker span{
     display: inline;
 }
-
+.comment-wrapper {display: flex;
+flex-direction: column;}
 .comment p,.comment span,.darker p,.darker span{
     color: rgb(184, 183, 183);
     
@@ -210,8 +197,15 @@ label{
 }
 .form-group p a{
     color: white;
+    
 }
-
+.form-group{display: flex;
+flex-direction: column;
+}
+.form-group button{
+    align-self: self-end;
+    
+}
 
 #darker img{
     margin-right: 15px;
