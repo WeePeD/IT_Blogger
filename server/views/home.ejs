@@ -15,9 +15,6 @@
         <img class="web-logo" src="https://static.vecteezy.com/system/resources/previews/017/178/344/original/hour-glass-icon-on-transparent-background-free-png.png" width="20" height="20">
 <h1 class="web-name">Memento</h1>
 
-        <ul>
-            <li>Bai viet</li>
-        </ul>
       </div>
         <div class="nav-components">
         <form>
@@ -53,7 +50,7 @@
               <a class="card" href="/blog/<%= blog.slug %>" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
                 <div>
                   <h1><%= blog.blogName %> </h1>
-                  <div class="date">6 Oct 2017</div>
+                  <div class="date"><%= blog.createAt.toLocaleDateString() %></div>
                   <div class="tags">
                   </div>
                 </div>

@@ -55,12 +55,12 @@ export default class commentController {
             createAt: new Date()
         })
         await userModel.findByIdAndUpdate(req.body.userId,{$push: {comments:newComment._id}})
-        await blogModel.findByIdAndUpdate(req.body.blog,{$push: {comments:newComment._id}})
+        const blog = await blogModel.findByIdAndUpdate(req.body.blog,{$push: {comments:newComment._id}}).populate('userId').populate('comments')
         const saveComment = await newComment.save()
         if (!saveComment) res.status(500)
                           .json({message: 'Internal error !'})
         res.status(201)
-           .json({message: saveComment})
+           .redirect(`/blog/${blog.slug}`)
     }
 
     /**

@@ -12,11 +12,8 @@
             <div class="web-logo">
             <!--<a>Hinh </a>-->
             <img class="web-logo" src="https://static.vecteezy.com/system/resources/previews/017/178/344/original/hour-glass-icon-on-transparent-background-free-png.png" width="20" height="20">
-    <h1 class="web-name">Memento</h1>
+        <h1 class="web-name">Memento</h1>
     
-            <ul>
-                <li>Bai viet</li>
-            </ul>
           </div>
             <div class="nav-components">
             <form>
@@ -64,7 +61,7 @@
                 <div class="comment mt-4 text-justify float-left">
                     <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
                     <h4>Jhon Doe</h4>
-                    <span>- 20 October, 2018</span>
+                    <span><%= comment.createAt.toLocaleDateString() %></span>
                     <br>
                     <p><%= comment.content %></p>
                 </div>
@@ -75,19 +72,18 @@
     </div>
 
             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                <form id="algin-form">
+                <form id="algin-form" action="/comment/createcomment" method="post">
                     <div class="form-group">
                         <h4>Leave a comment</h4>
-                        <input name="userId" type="hidden">
-                        <input name="blog" type="hidden">
+                        <input name="userId" type="hidden" value="634b7558d6a95f9a218da91b">
+                        <input name="blog" type="hidden" value="<%= blog._id %>">
                         <label for="message" >Message</label>
                         
-                        <textarea name="comment" id=""msg cols="30" rows="5" class="form-control" style="background-color:#fff;" placeholder="Share your thought here..."></textarea>
+                        <textarea name="content" id=""msg cols="30" rows="5" class="form-control" style="background-color:#fff;" placeholder="Share your thought here..."></textarea>
                    
                     
-                        <button type="button" id="post" class="btn">Post Comment</button>
-                    
-                </div>
+                        <button type="submit" id="post" class="btn">Post Comment</button>
+                    </div>
                 </form>
             </div>
         </div>
